@@ -29,6 +29,41 @@ public interface CounterDAO {
     void updateTick(byte step, String articleId);
 
     /**
+     * Returns true if the session ticks(counter) was reset to zero(0) else this method returns false.
+     * @param articleId - Unique string representing the article in the tuple of the database
+     * @return true if the session ticks(counter) was reset to zero(0) else this method returns false
+     *
+     */
+    boolean resetTicks(String articleId);
+
+    /**
+     * Returns true if the session ticks(counter) was set to the given value val through the method argument else it 
+     * sets to the upper bound of the holding capacity. Note that lower bound = 0.
+     * While updation, the bounds are checked.
+     * @param articleId - Unique string representing the article in the tuple of the database
+     * @param val - BigInteger value to set the value in the database forcefully.
+     * @return true if the session ticks(counter) was set to the given value val through the method argument else false
+     */
+    boolean forceSetValue(String articleId, BigInteger val);
+
+    /**
+     * If the sesions ticks(counter) after the addition of the value provided through the method call lies within the 
+     * range [lower bound, upper bound], the tuple will be updated else no operation will be done.
+     * @param articleId - Unique string representing the article in the tuple of the database
+     * @param val - BigInteger value to set the value in the database forcefully.
+     * @return true if the force increment was successfull else false.
+     */
+    boolean forceIncrement(String articleId, BigInteger val);
+
+    /**
+     * If the bound lies within the allowed data type bound, the bound would be set else the bound will be set to the 
+     * highest value available on the database.
+     * @param lowerBound - The lower bound of the counts(ticks)
+     * @param upperBound - The upper bound of the counts(ticks)
+     */
+    void setBounds(BigInteger lowerBound, BigInteger upperBound);
+
+    /**
      * Returns the number of ticks or the count of hits.
      * @param articleId - Unique string representing the article in the tuple of the database
      * @return Number of counts or hits associated with a specific Article ID
