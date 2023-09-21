@@ -74,7 +74,8 @@ public interface CounterDAO {
     /**
      * Returns the session start time. A session is a period.
      * @param <T> T
-     * @param type - String.class OR ArticleTimes.class
+     * @param type - String.class
+     * @param type - ArticleTimes.class
      * @param articleId - Unique string representing the article in the tuple of the database
      * @return Date and Time formatted in the type provided in the method argument
      */
@@ -83,7 +84,8 @@ public interface CounterDAO {
     /**
      * Returns the session elapsed time. A session is a period.
      * @param <T> T
-     * @param type - String.class OR ArticleTimes.class
+     * @param type - String.class
+     * @param type - ArticleTimes.class
      * @param articleId - Unique string representing the article in the tuple of the database
      * @return Date and Time formatted in the type provided in the method argument
      */
